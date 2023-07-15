@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { beerRecipe, useBeerStore } from '../store/store'
+import React from "react";
+import { beerRecipe } from '../store/store'
 
 const BeerRecipePage: React.FC<beerRecipe> = (beerRecipe) => {
 

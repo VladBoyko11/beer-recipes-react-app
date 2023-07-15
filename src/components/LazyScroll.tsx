@@ -1,44 +1,5 @@
-// import React, { ReactNode, useEffect, useRef } from 'react';
-// import { JsxElement } from 'typescript';
-// import { beerRecipe } from '../store/store';
-// import BeerRecipe from './BeerRecipe';
-
+import React from 'react';
 import BeerRecipes from "./BeerRecipes"
-
-// interface ILazyScroll {
-//     children: Array<beerRecipe>,
-//     threshold: number,
-//     onIntersect: () => void
-// }
-
-// const LazyScroll: React.FC<ILazyScroll> = ({ children, threshold = 0.5, onIntersect }) => {
-//     const observerRef = useRef<HTMLInputElement>(null);
-
-//     useEffect(() => {
-//         const options = {
-//             threshold: threshold,
-//         };
-
-//         const observer = new IntersectionObserver((entries) => {
-//             entries.forEach((entry) => {
-//                 if (entry.isIntersecting) {
-//                     onIntersect();
-//                 }
-//             });
-//         }, options);
-
-//         if (observerRef.current) observer.observe(observerRef.current);
-
-//         return () => {
-//             observer.disconnect();
-//         };
-//     }, [threshold, onIntersect]);
-
-//     return <div ref={observerRef}>{children.map(beerRecipe => <BeerRecipe {...beerRecipe}/>)}</div>;
-// };
-
-// export default LazyScroll
-
 
 const LazyScroll: React.FC = () => {
     return <div id="carouselExampleIndicators" className="carousel slide" data-bs-ride="carousel">

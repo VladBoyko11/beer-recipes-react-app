@@ -52,50 +52,50 @@ export interface beerRecipe {
     target_og: number
 }
 
-interface BeerState {
+interface IBeerState {
     page: number,
     setPage: () => void
-  beerRecipes: Array<beerRecipe>,
-  setBeerRecipes: (beerRecipes: Array<beerRecipe>) => void,
-  selectedBeerRecipes: Array<beerRecipe>,
-  setSelectedBeerRecipe: (beerRecipe: beerRecipe) => void,
-  deleteAllSelectedBeerRecipes: () => void,
-  setBeerRecipesIfNeeded: (beerRecipes: Array<beerRecipe>) => void,
-  clickedBeerRecipe: beerRecipe | null,
-  setClickedBeerRecipe: (beerRecipe: beerRecipe) => void
+    beerRecipes: Array<beerRecipe>,
+    setBeerRecipes: (beerRecipes: Array<beerRecipe>) => void,
+    selectedBeerRecipes: Array<beerRecipe>,
+    setSelectedBeerRecipe: (beerRecipe: beerRecipe) => void,
+    deleteAllSelectedBeerRecipes: () => void,
+    setBeerRecipesIfNeeded: (beerRecipes: Array<beerRecipe>) => void,
+    clickedBeerRecipe: beerRecipe | null,
+    setClickedBeerRecipe: (beerRecipe: beerRecipe) => void
 }
 
-export const useBeerStore = create<BeerState>()((set) => ({
+export const useBeerStore = create<IBeerState>()((set) => ({
     page: 1,
-    setPage: () => set((state) => ({page: state.page + 1})),
+    setPage: () => set((state) => ({ page: state.page + 1 })),
     beerRecipes: [],
     selectedBeerRecipes: [],
     clickedBeerRecipe: null,
-    setClickedBeerRecipe: (beerRecipe) => set(() => ({clickedBeerRecipe: beerRecipe})),
-    setBeerRecipes: (beerRecipes) => set(() => ({beerRecipes: [...beerRecipes]})),
-    setBeerRecipesIfNeeded: (beerRecipes) => set((state) => ({beerRecipes: [...state.beerRecipes, ...beerRecipes]})),
+    setClickedBeerRecipe: (beerRecipe) => set(() => ({ clickedBeerRecipe: beerRecipe })),
+    setBeerRecipes: (beerRecipes) => set(() => ({ beerRecipes: [...beerRecipes] })),
+    setBeerRecipesIfNeeded: (beerRecipes) => set((state) => ({ beerRecipes: [...state.beerRecipes, ...beerRecipes] })),
     setSelectedBeerRecipe: (beerRecipe) => set((state) => {
         const arr = [...state.selectedBeerRecipes]
         let isFounded = false
         state.selectedBeerRecipes.forEach((selectedBeerRecipe, index) => {
-            if(selectedBeerRecipe.name === beerRecipe.name){
+            if (selectedBeerRecipe.name === beerRecipe.name) {
                 arr.splice(index, 1)
                 isFounded = true
             }
         })
         isFounded ? console.log(arr) : console.log(state.selectedBeerRecipes)
-        return isFounded ? {selectedBeerRecipes: [...arr]} : {selectedBeerRecipes: [...state.selectedBeerRecipes, beerRecipe]}
+        return isFounded ? { selectedBeerRecipes: [...arr] } : { selectedBeerRecipes: [...state.selectedBeerRecipes, beerRecipe] }
     }),
     deleteAllSelectedBeerRecipes: () => set(state => {
         const beerRecipes = [...state.beerRecipes]
 
         state.beerRecipes.forEach((beerRecipe, i) => {
             state.selectedBeerRecipes.forEach((selectedBeerRecipe, j) => {
-                if(beerRecipe.name === selectedBeerRecipe.name){
+                if (beerRecipe.name === selectedBeerRecipe.name) {
                     beerRecipes.splice(i, 1)
                 }
             })
         })
-        return {selectedBeerRecipes: [], beerRecipes: [...beerRecipes]}
+        return { selectedBeerRecipes: [], beerRecipes: [...beerRecipes] }
     })
 }))

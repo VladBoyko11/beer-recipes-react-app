@@ -4,6 +4,7 @@
   font-size: 1.3rem;
   margin: 2px;
 }
+
 .beerCard {
   height: 89vh;
   cursor: pointer;
@@ -12,27 +13,32 @@
   margin: 1px;
   width: 18%;
 }
+
 .foodPairing {
   color: black;
   font-weight: 300;
 }
-.header{
+
+.header {
   height: 10vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 .selectedItem {
   width: 100%;
   background-color: #ffc107;
   color: black;
   font-weight: 700;
 }
-.selectedContainer{
+
+.selectedContainer {
   width: 100%;
   height: 2vh;
 }
-.carouselBtn{
+
+.carouselBtn {
   background-color: #343a40;
   width: 13vw;
 }

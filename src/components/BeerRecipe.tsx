@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { beerRecipe, useBeerStore } from '../store/store'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const BeerRecipe: React.FC<beerRecipe> = (beerRecipe) => {
     const setSelectedBeerRecipe = useBeerStore(state => state.setSelectedBeerRecipe)
     const selectedBeerRecipes = useBeerStore(state => state.selectedBeerRecipes)
     const setClickedBeerRecipe = useBeerStore(state => state.setClickedBeerRecipe)
     const [toogleSelected, setToogleSelected] = useState<boolean>(false)
-    
-    const params = useParams()
+
     const navigate = useNavigate()
-    const redirectToSomePage = (redirectPath: string) =>{
-        navigate(redirectPath, {replace: true})
+    const redirectToSomePage = (redirectPath: string) => {
+        navigate(redirectPath, { replace: true })
     }
-    
+
     useEffect(() => {
         setToogleSelected(false)
-    })
+    }, [])
 
     useEffect(() => {
         selectedBeerRecipes.forEach(selectedBeerRecipe => {
-            if(selectedBeerRecipe.name === beerRecipe.name) setToogleSelected(true)
-        })    
+            if (selectedBeerRecipe.name === beerRecipe.name) setToogleSelected(true)
+        })
     })
     const selectBeerRecipe = (beerRecipe: beerRecipe) => {
         setSelectedBeerRecipe(beerRecipe)
