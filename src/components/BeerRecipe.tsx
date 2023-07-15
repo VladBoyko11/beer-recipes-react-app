@@ -26,7 +26,8 @@ const BeerRecipe: React.FC<beerRecipe> = (beerRecipe) => {
         setSelectedBeerRecipe(beerRecipe)
     }
 
-    return <div className='card beerRecipe text-center d-inline-flex justify-content-between beerCard' onContextMenu={() => {
+    return <div className='card beerRecipe text-center d-inline-flex justify-content-between beerCard' onContextMenu={(event) => {
+        event.preventDefault()
         selectBeerRecipe(beerRecipe)
         setToogleSelected(!toogleSelected)
     }} onClick={() => {
